@@ -25,6 +25,13 @@ struct SignUpView: View {
                 .background(Color(.secondarySystemBackground))
                 .cornerRadius(8)
             
+            TextField("Name", text: $viewModel.name)
+                .keyboardType(.emailAddress)
+                .autocapitalization(.none)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
+            
             SecureField("Password", text: $viewModel.password)
                 .padding()
                 .background(Color(.secondarySystemBackground))
