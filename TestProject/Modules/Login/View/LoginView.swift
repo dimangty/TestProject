@@ -32,12 +32,12 @@ struct LoginView: View {
                 .cornerRadius(8)
             
             Button("Login") {
-                print("Button tapped!")
+                viewModel.loginTapped()
             }.disabled(!viewModel.isValid)
             
             Button("Sign UP") {
-                print("Button tapped!")
-            }.disabled(!viewModel.isValid)
+                viewModel.signUPTapped()
+            }
             
             Spacer()
         }.padding(.horizontal, 16)

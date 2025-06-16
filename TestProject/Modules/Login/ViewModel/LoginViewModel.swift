@@ -16,6 +16,7 @@ final class LoginViewModel: ObservableObject {
     @Published var isShowHome: Bool = false
     @Published var isShowSignUP: Bool = false
     
+    @Injected private var validationService: ValidationService?
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -39,11 +40,16 @@ final class LoginViewModel: ObservableObject {
     }
     
     private func validate() {
-        if email.count >= 5 && password.count >= 5 {
+        if validationService?.validateEmail(email) ?? false &&
+            validationService?.validatePassword(password) ?? false {
             isValid = true
         } else {
             isValid = false
         }
+    }
+    
+    func loginTapped() {
+        isShowHome.toggle()
     }
     
     func signUPTapped() {

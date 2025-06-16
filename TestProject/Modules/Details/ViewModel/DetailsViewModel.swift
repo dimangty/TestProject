@@ -11,8 +11,12 @@ import Foundation
 
 final class DetailsViewModel: ObservableObject {
 
+    @Published var item: Article
+    private var networkService: NetworkService?
+    
     required init() {
-
+        networkService = Configurator.shared.serviceLocator.getService(type: NetworkService.self)
+        item = networkService?.getItem(id: 1) ?? Article.shared
     }
 
     // MARK: - DetailsViewOutput methods

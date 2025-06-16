@@ -38,11 +38,11 @@ struct SignUpView: View {
                 .cornerRadius(8)
             
             Button("Sign UP") {
-                print("Button tapped!")
+                viewModel.signUpTapped()
             }.disabled(!viewModel.isValid)
             
             Spacer()
-        }.navigationBarHidden(true)
+        }
         .padding(.horizontal, 16)
         .navigation(isActive: $viewModel.isShowHome,
                     id: HomeView.navigationID) {

@@ -11,13 +11,25 @@ import Foundation
 
 final class HomeViewModel: ObservableObject {
 
+    @Published var items: [Article] = []
+    @Published var isShowDetails: Bool = false
+    
+    var selectedArticle: Article = Article.shared
+    
+    @Injected private var networkService: NetworkService?
+    
     required init() {
-
+        
     }
 
     // MARK: - HomeViewOutput methods
     func didLoad() {
-        
+        items = networkService?.getArticles() ?? []
+    }
+    
+    func tapArticle(_ article: Article) {
+        selectedArticle = article
+        isShowDetails = true
     }
 
 }

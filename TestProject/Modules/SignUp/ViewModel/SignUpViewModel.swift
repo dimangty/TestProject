@@ -49,6 +49,10 @@ final class SignUpViewModel: ObservableObject {
             isValid = false
         }
     }
+    
+    func signUpTapped() {
+        isShowHome.toggle()
+    }
 
 }
 
