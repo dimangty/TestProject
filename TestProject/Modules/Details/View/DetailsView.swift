@@ -30,6 +30,8 @@ struct DetailsView: View {
                 Spacer()
             }.padding(.horizontal, 16)
             
+        }.onAppear() {
+            viewModel.didLoad()
         }
         
     }
