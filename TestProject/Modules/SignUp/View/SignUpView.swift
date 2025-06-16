@@ -13,7 +13,34 @@ struct SignUpView: View {
     @StateObject private var viewModel = SignUpViewModel()
 
     var body: some View {
-        Text("Hello world!")
+        VStack(spacing: 20) {
+            Text("Sign UP")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            TextField("Email", text: $viewModel.email)
+                .keyboardType(.emailAddress)
+                .autocapitalization(.none)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
+            
+            SecureField("Password", text: $viewModel.password)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
+            
+            Button("Sign UP") {
+                print("Button tapped!")
+            }.disabled(!viewModel.isValid)
+            
+            Spacer()
+        }.navigationBarHidden(true)
+        .padding(.horizontal, 16)
+        .navigation(isActive: $viewModel.isShowHome,
+                    id: HomeView.navigationID) {
+           HomeView()
+        }
     }
 
 }

@@ -7,15 +7,50 @@
 //
 
 import SwiftUI
+import SUINavigation
 
 struct LoginView: View {
-
+    
     @StateObject private var viewModel = LoginViewModel()
-
+    
     var body: some View {
-        Text("Hello world!")
+        VStack(spacing: 20) {
+            Text("Login")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            TextField("Email", text: $viewModel.email)
+                .keyboardType(.emailAddress)
+                .autocapitalization(.none)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
+            
+            SecureField("Password", text: $viewModel.password)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
+            
+            Button("Login") {
+                print("Button tapped!")
+            }.disabled(!viewModel.isValid)
+            
+            Button("Sign UP") {
+                print("Button tapped!")
+            }.disabled(!viewModel.isValid)
+            
+            Spacer()
+        }.padding(.horizontal, 16)
+        .navigation(isActive: $viewModel.isShowHome,
+                    id: HomeView.navigationID) {
+            HomeView()
+        }
+        .navigation(isActive: $viewModel.isShowSignUP,
+                    id: SignUpView.navigationID) {
+            SignUpView()
+        }
     }
-
+    
 }
 
 #Preview {
